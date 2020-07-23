@@ -212,7 +212,7 @@ public class TestBase {
 			CustomListeners.testReport.get().log(Status.FAIL, " Verification failed with exception : " + t.getMessage());
 			//CustomListeners.testReport.get().log(Status.FAIL, CustomListeners.testReport.get().addScreenCaptureFromPath(TestUtil.screenshotName));
 System.out.println("checkin");
-System.out.println("checkin2");
+System.out.println("checkin2 ");
 		}
 
 	}
