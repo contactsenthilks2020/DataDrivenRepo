@@ -30,11 +30,10 @@ import com.w2a.utilities.TestUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
-	//again test2
+	// again test2
 	/*
-	 * WebDriver - done Properties - done Logs - log4j jar, .log,
-	 * log4j.properties, Logger ExtentReports DB Excel Mail ReportNG,
-	 * ExtentReports Jenkins
+	 * WebDriver - done Properties - done Logs - log4j jar, .log, log4j.properties,
+	 * Logger ExtentReports DB Excel Mail ReportNG, ExtentReports Jenkins
 	 * 
 	 */
 
@@ -83,22 +82,17 @@ public class TestBase {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-			
-			if(System.getenv("browser")!=null && !System.getenv("browser").isEmpty()){
-				
+
+			if (System.getenv("browser") != null && !System.getenv("browser").isEmpty()) {
+
 				browser = System.getenv("browser");
-			}else{
-				
+			} else {
+
 				browser = config.getProperty("browser");
-				
+
 			}
-			
+
 			config.setProperty("browser", browser);
-			
-			
-			
 
 			if (config.getProperty("browser").equals("firefox")) {
 
@@ -108,9 +102,10 @@ public class TestBase {
 
 			} else if (config.getProperty("browser").equals("chrome")) {
 
-				/*System.setProperty("webdriver.chrome.driver",
-						System.getProperty("user.dir") + "\\src\\test\\resources\\executables\\chromedriver.exe");
-			*/	
+				/*
+				 * System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")
+				 * + "\\src\\test\\resources\\executables\\chromedriver.exe");
+				 */
 				WebDriverManager.chromedriver().setup();
 				driver = new ChromeDriver();
 				log.debug("Chrome Launched !!!");
@@ -127,7 +122,7 @@ public class TestBase {
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")),
 					TimeUnit.SECONDS);
-			wait = new WebDriverWait(driver, 5);  
+			wait = new WebDriverWait(driver, 5);
 		}
 
 	}
@@ -158,7 +153,7 @@ public class TestBase {
 		CustomListeners.testReport.get().log(Status.INFO, "Typing in : " + locator + " entered value as " + value);
 
 	}
-	
+
 	static WebElement dropdown;
 
 	public void select(String locator, String value) {
@@ -170,11 +165,12 @@ public class TestBase {
 		} else if (locator.endsWith("_ID")) {
 			dropdown = driver.findElement(By.id(OR.getProperty(locator)));
 		}
-		
+
 		Select select = new Select(dropdown);
 		select.selectByVisibleText(value);
 
-		CustomListeners.testReport.get().log(Status.INFO, "Selecting from dropdown : " + locator + " value as " + value);
+		CustomListeners.testReport.get().log(Status.INFO,
+				"Selecting from dropdown : " + locator + " value as " + value);
 
 	}
 
@@ -209,10 +205,12 @@ public class TestBase {
 			Reporter.log("<br>");
 			Reporter.log("<br>");
 			// Extent Reports
-			CustomListeners.testReport.get().log(Status.FAIL, " Verification failed with exception : " + t.getMessage());
-			//CustomListeners.testReport.get().log(Status.FAIL, CustomListeners.testReport.get().addScreenCaptureFromPath(TestUtil.screenshotName));
-System.out.println("checkin");
-System.out.println("checkin2 ");
+			CustomListeners.testReport.get().log(Status.FAIL,
+					" Verification failed with exception : " + t.getMessage());
+			// CustomListeners.testReport.get().log(Status.FAIL,
+			// CustomListeners.testReport.get().addScreenCaptureFromPath(TestUtil.screenshotName));
+			System.out.println("checkin");
+			System.out.println("checkin2 ");
 		}
 
 	}
